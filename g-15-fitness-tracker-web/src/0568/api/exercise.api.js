@@ -4,8 +4,8 @@ import { EXCERCISE_API } from "../../utils";
 // bodypart, equipment, target, exercise
 const cache = {};
 const headers = {
-	'X-RapidAPI-Key': '403b035ab3msh442c9d6c11bf668p14a8abjsnbed8f522b83d',
-    'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+	'X-RapidAPI-Key': 'USE_YOUR_API_KEY',
+    'X-RapidAPI-Host': 'USE_YOUR_API_HOST'
 };
 export const getExercises = async () => {
 	try {
