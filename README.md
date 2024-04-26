@@ -5,6 +5,7 @@ Here is a complete setup for fitness application, including front-end developed 
 
 ## Demo
 
+https://youtu.be/1PN7d9s_Eng
 
 ## How to use
 
