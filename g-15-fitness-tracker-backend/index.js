@@ -1,7 +1,19 @@
 const express = require("express");
 const connection = require("./confgs/db");
 //const GoogleRouter = require("./router/google.auth");
-const app = express();
+
+var path = require('path');
+var oas3Tools = require('oas3-tools');
+// swaggerRouter configuration
+var options = {
+    routing: {
+        controllers: path.join(__dirname, './controllers')
+    },
+};
+
+var expressAppConfig = oas3Tools.expressAppConfig(path.join(__dirname, 'api/openapi.yaml'), options);
+var app = expressAppConfig.getApp();
+//const app = express();
 //const passport = require("./confgs/google");
 const cookieSession = require("cookie-session");
 const cors = require("cors");

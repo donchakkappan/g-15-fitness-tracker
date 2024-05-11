@@ -1,0 +1,210 @@
+openapi: 3.0.0
+info:
+  title: Fitness Tracker API
+  description: API documentation for the Fitness Tracker Web Application
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /api/users:
+    get:
+      summary: Get User Profile
+      description: Retrieves the profile information of the authenticated user.
+      operationId: apiUsersGET
+      responses:
+        "200":
+          description: User profile retrieved successfully.
+        "401":
+          description: Unauthorized access.
+      x-swagger-router-controller: Default
+    put:
+      summary: Update User Profile
+      description: Updates the profile information of the authenticated user.
+      operationId: apiUsersPUT
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserProfileUpdate'
+        required: true
+      responses:
+        "200":
+          description: User profile updated successfully.
+        "401":
+          description: Unauthorized access.
+      x-swagger-router-controller: Default
+    post:
+      summary: Login
+      description: Logs in an existing user.
+      operationId: apiUsersPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+        required: true
+      responses:
+        "200":
+          description: User login successful.
+        "401":
+          description: Unauthorized access.
+      x-swagger-router-controller: Default
+  /api/workouts:
+    get:
+      summary: Get Workouts by User
+      description: Retrieves the workouts logged by the authenticated user.
+      operationId: apiWorkoutsGET
+      responses:
+        "200":
+          description: Workouts retrieved successfully.
+        "401":
+          description: Unauthorized access.
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Default
+    put:
+      summary: Update Workout
+      description: Updates the details of a workout logged by the authenticated user.
+      operationId: apiWorkoutsPUT
+      parameters:
+      - name: workoutId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkoutUpdate'
+        required: true
+      responses:
+        "200":
+          description: Workout updated successfully.
+        "401":
+          description: Unauthorized access.
+        "404":
+          description: Workout not found.
+      x-swagger-router-controller: Default
+    post:
+      summary: Log Workout
+      description: Logs a new workout for the authenticated user.
+      operationId: apiWorkoutsPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkoutLog'
+        required: true
+      responses:
+        "200":
+          description: Workout logged successfully.
+        "401":
+          description: Unauthorized access.
+      x-swagger-router-controller: Default
+  /api/workouts/{workoutId}:
+    get:
+      summary: Get Workout by ID
+      description: Retrieves a specific workout by its ID.
+      operationId: apiWorkoutsWorkoutIdGET
+      parameters:
+      - name: workoutId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Workout retrieved successfully.
+        "401":
+          description: Unauthorized access.
+        "404":
+          description: Workout not found.
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Default
+    delete:
+      summary: Delete Workout
+      description: Deletes a workout logged by the authenticated user.
+      operationId: apiWorkoutsWorkoutIdDELETE
+      parameters:
+      - name: workoutId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Workout deleted successfully.
+        "401":
+          description: Unauthorized access.
+        "404":
+          description: Workout not found.
+      x-swagger-router-controller: Default
+components:
+  schemas:
+    UserRegistration:
+      required:
+      - password
+      - username
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    UserLogin:
+      required:
+      - password
+      - username
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    UserProfileUpdate:
+      required:
+      - firstName
+      - lastName
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+    WorkoutLog:
+      required:
+      - duration
+      - exerciseType
+      type: object
+      properties:
+        exerciseType:
+          type: string
+        duration:
+          type: integer
+        distance:
+          type: number
+        sets:
+          type: integer
+        reps:
+          type: integer
+    WorkoutUpdate:
+      type: object
+      properties:
+        exerciseType:
+          type: string
+        duration:
+          type: integer
+        distance:
+          type: number
+        sets:
+          type: integer
+        reps:
+          type: integer

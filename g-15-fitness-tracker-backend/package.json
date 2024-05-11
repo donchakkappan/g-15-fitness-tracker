@@ -1,13 +1,14 @@
 {
   "name": "g-15-fitness-tracker-backend",
   "version": "1.0.0",
+  "description": "API documentation for the Fitness Tracker Web Application",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon index.js",
     "start": "node index.js"
   },
-  "keywords": [],
+  "keywords": ["swagger"],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -20,6 +21,9 @@
     "mongoose": "^7.0.5",
     "nodemon": "^2.0.22",
     "passport": "^0.5.3",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "connect": "^3.2.0",
+    "js-yaml": "^3.3.0",
+    "oas3-tools": "^2.2.3"
   }
 }
