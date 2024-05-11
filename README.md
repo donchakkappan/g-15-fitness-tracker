@@ -13,6 +13,9 @@ https://youtu.be/1PN7d9s_Eng
 
 #### 2.] Run Frontend Application using "npm start"
 
+## API documentation
+Swagger documentation is available at `http://localhost:3000/docs/index.html`
+
 ## License
 
 ```license
